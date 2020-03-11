@@ -7,11 +7,27 @@ import React from 'react';
 // import RouteIndex from './route/index'
 
 
-class App extends React.Component {
-  constructor(props){
+interface props {
+  testa: string,
+}
+
+interface state {
+  bbb:any
+}
+
+
+class App extends React.Component<props,state> {
+  constructor(props:props ){
     super(props)
     this.state = {
-    } 
+      bbb:'dddd'
+    }
+  }
+
+  render(): any{
+    return (
+      <div>{this.state.bbb}</div>
+    )
   }
 
 }
