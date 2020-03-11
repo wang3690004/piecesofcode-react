@@ -12,7 +12,7 @@ module.exports = merge(baseConfig,{
   },
   devtool:'inline-source-map',
   resolve:{
-    extensions:['.js','.jsx','.json','.ts','.tsx'],
+    extensions:['.ts','.tsx','.js','.jsx','.json'],
   },//这个resolve 会影响jsx js的引用问题，昨天报错只要因为这个
   plugins:[
     new HtmlWebpackPlugin({
