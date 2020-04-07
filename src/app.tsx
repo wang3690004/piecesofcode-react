@@ -8,11 +8,12 @@ import React from 'react';
 
 
 interface props {
-  testa: string,
+  // testa: string,
 }
 
 interface state {
-  bbb:any
+  bbb:any,
+  testa:object,
 }
 
 
@@ -20,13 +21,26 @@ class App extends React.Component<props,state> {
   constructor(props:props ){
     super(props)
     this.state = {
-      bbb:'dddd'
+      bbb:'dddddddddasdasdasddddd',
+      testa:[1,2,'3',[2,'44']],
     }
+  }
+
+   test(){
+    let slogan :string[] = ['1,2,3']
+    return (<span>{slogan}</span>)
+  }
+  testb(){
+    let slogan = 'hello world'
+    return (<span>{slogan}</span>)
   }
 
   render(): any{
     return (
-      <div>{this.state.bbb}</div>
+      <div>{this.state.testa}
+      {this.test()}
+      {this.testb()}
+      </div>
     )
   }
 
