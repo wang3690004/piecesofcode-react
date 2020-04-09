@@ -8,7 +8,7 @@ import {Provider} from 'react-redux'
 
 if(module.hot) {
   module.hot.accept(()=>{
-    console.log('222222')
+    // console.log('222222')
     ReactDom.render(
       // <Provider >
       /* // <BrowserRouter> */

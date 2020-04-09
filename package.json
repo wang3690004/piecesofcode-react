@@ -20,9 +20,11 @@
   },
   "homepage": "https://github.com/wang3690004/piecesofcode-react#readme",
   "dependencies": {
+    "@ant-design/icons": "^4.0.5",
     "@types/hoist-non-react-statics": "^3.3.1",
     "antd": "^4.0.2",
     "axios": "^0.19.2",
+    "babel-plugin-import": "^1.13.0",
     "dayjs": "^1.8.22",
     "hoist-non-react-statics": "^3.3.2",
     "path-parse": "^1.0.6",
