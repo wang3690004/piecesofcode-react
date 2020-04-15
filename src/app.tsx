@@ -1,7 +1,7 @@
 import React,{useState, useRef,useEffect} from 'react';
 import {List,Avatar, Button,Typography,Form,Input,Select,DatePicker,Menu,Dropdown,Tabs} from "antd";
 import { DownOutlined } from "@ant-design/icons";
-import "./App.css";
+import "./app.css";
 // import {Link } from 'react-router-dom'
 // const { Header, Content, Footer, Sider } = Layout;
 // const { SubMenu } = Menu;
@@ -78,6 +78,10 @@ const menu = (
   </Menu>
 );
 
+// function add(x:number,y:number){
+//   return x + y
+// }
+
 const TodoInput = ({value = {} })=>{
   return (
     <div className ='todoInput'>
@@ -116,10 +120,10 @@ function GetUseStates(){
   useEffect(()=>{
     console.log(count.name,count.age)
     document.title= count.age.toString()
-    return function(){
+    return ()=>{
       console.log(123123123)
     }
-  },[])
+  })
   // useEffect(()=>{
   //   console.log(123123123)
   //   console.log(count.name,count.age)
