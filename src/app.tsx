@@ -78,9 +78,17 @@ const menu = (
   </Menu>
 );
 
-// function add(x:number,y:number){
-//   return x + y
+
+const add1  =  (x:number,y:number):number => {
+  return x+y
+}
+const add: (x: number, y: number)=> number =  function(x, y) {
+  return x + y;
+}
+// function add1(x:number,y:number) : number{
+//   return x+y
 // }
+
 
 const TodoInput = ({value = {} })=>{
   return (
