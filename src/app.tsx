@@ -146,7 +146,7 @@ function GetUseStates(){
   const [count,setCount] = useState({name:'tom',age:12})
   // useEffect(()=>{
   //   console.log(count.name,count.age)
-  //   document.title= count.age.toString()
+  //   document.title= count.age.toString()   
   //   return ()=>{
   //     console.log(123123123)
   //   }
