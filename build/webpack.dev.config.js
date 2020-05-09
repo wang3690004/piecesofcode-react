@@ -29,12 +29,20 @@ module.exports = merge(baseConfig,{
     contentBase:path.join(__dirname, '../src'),
     clientLogLevel:'error',
     hot:true,
+    // host:'localhost',
+    port:3001,
     // compress:true, 先不开启压缩 
     historyApiFallback:true, //让所有404页面定位到index.html
     open:true,   //关于热更新问题 还仍然残留 不知道配置的到底对不对，
     noInfo:true,
     proxy:{
+
+      '/getusers' : {
+        target:'http://localhost:3000',
+        changeOrigin:true
+      }
+     
     },
-    port:3001
+
   }
 })

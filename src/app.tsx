@@ -1,16 +1,32 @@
 import React,{useState, useRef,useEffect} from 'react';
 import {List,Avatar, Button,Typography,Form,Input,Select,DatePicker,Menu,Dropdown,Tabs} from "antd";
 import { DownOutlined } from "@ant-design/icons";
+import {getusers} from './apis/users';
+import {connect } from 'react-redux'
+import {Dispatch} from 'redux'
+import {incrementEnthusiasm,decrementEnthusiasm} from './redux/actions'
+import {StoreState} from './redux/types'
+
+
 import "./app.css";
 // import {Link } from 'react-router-dom'
 // const { Header, Content, Footer, Sider } = Layout;
 // const { SubMenu } = Menu;
-// import {getUser} from './apis/user'
 // import RouteIndex from './route/index'
+//ts 关于文件的引入 需要注意的地方是 需要声明类型
 
 const {Title} = Typography
 const {Option} = Select
 const {TabPane} = Tabs
+
+
+const mapStateToProps = (state:StoreState):{value:StoreState}=>({value:state})
+//将reducer 中的状态插入到组件的props中
+const mapDispatchToProps = (dispatch:Dispatch)=>({
+  increase:()=>dispatch(incrementEnthusiasm()),
+  decrease:()=>dispatch(decrementEnthusiasm()),
+})
+
 
 const todoListData   = [
   {
@@ -76,19 +92,22 @@ const menu = (
     <Menu.Item>完成</Menu.Item>
     <Menu.Item>删除</Menu.Item>
   </Menu>
-);
+); 
 
 
-const add1  =  (x:number,y:number):number => {
-  return x+y
-}
-const add: (x: number, y: number)=> number =  function(x, y) {
-  return x + y;
-}
-// function add1(x:number,y:number) : number{
+// const add1  =  (x:number,y:number):number => {
+  
 //   return x+y
 // }
+// const add: (x: number, y: number)=> number =  function(x, y) {
+//   return x + y;
+// }
 
+
+const getUsers = async ()=>{
+ let result = await getusers({a:'1',b:'2'})
+  console.log(result)
+}
 
 const TodoInput = ({value = {} })=>{
   return (
@@ -125,21 +144,14 @@ function TodoList(){
 
 function GetUseStates(){
   const [count,setCount] = useState({name:'tom',age:12})
-  useEffect(()=>{
-    console.log(count.name,count.age)
-    document.title= count.age.toString()
-    return ()=>{
-      console.log(123123123)
-    }
-  })
   // useEffect(()=>{
-  //   console.log(123123123)
   //   console.log(count.name,count.age)
   //   document.title= count.age.toString()
-  //   return function(){
-  //     console.log(11111121)
+  //   return ()=>{
+  //     console.log(123123123)
   //   }
-  // },[count.name,count.age])
+  // })
+
   return (<>
     {`${count.name}已经${count.age}岁了`}
 
@@ -147,9 +159,16 @@ function GetUseStates(){
     </>)
     
 }
+export interface Props {
+  value:{
+    enthusiasmLevel:number
+  },
+  increase?: () => void;
+  decrease?: () => void;
+}
 
 
-function App(){
+function App({value,increase,decrease}:Props){
   
   const callback = ()=> {}
   const onFinish = ()=> {}
@@ -162,7 +181,8 @@ function App(){
       </div>
       <div className='container header'>
         <img alt='aaa'/>
-        <Title level={3}>汇聚精彩的免费实战教程</Title>
+        <Title  level={3}>汇聚精彩的免费实战教程</Title>
+        <p onClick={getUsers}>汇聚精彩的免费实战教程</p>
       </div>
       <div className='container'>
         <Form onFinish={onFinish}>
@@ -172,6 +192,10 @@ function App(){
         </Form>
       </div>
       <div className='container'>
+        <span onClick={increase}>+</span>
+        <h2>ddd</h2>
+        <span onClick={decrease}>-</span>
+        <p>{value.enthusiasmLevel}</p>
         <Tabs onChange={callback} type='card'>
           <TabPane tab='所有' key='1'> <TodoList /></TabPane>
           <TabPane tab='进行中' key='2'> <TodoList /></TabPane>
@@ -182,4 +206,4 @@ function App(){
   )
 }
 
-export default  App
+export default  connect(mapStateToProps,mapDispatchToProps)(App)

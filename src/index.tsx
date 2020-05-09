@@ -2,27 +2,24 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import {HashRouter} from 'react-router-dom'
 import App from './App'
-
-
 import {Provider} from 'react-redux'
-// import store from './redux/store'
+import {createStore} from 'redux'
+import reducer from './redux/reducer'
+const store = createStore<any,any,any,any>(reducer)
+
 
 if(module.hot) {
   module.hot.accept(()=>{
-    console.log('getmodulehot')
+    alert('getmodulehot')
     ReactDom.render(
-      // <Provider >
-      /* // <BrowserRouter> */
-      <App  />,
-      /* // </BrowserRouter> */
-      //  </Provider>,
+      <Provider store= {store} ><HashRouter> <App  />, </HashRouter>  </Provider>,
       document.getElementById('root')
     )
   })
 }
 const render = ()=>{
   ReactDom.render(
-    <App  />,
+    <Provider store={store} ><HashRouter> <App  />,</HashRouter> </Provider>,
   document.getElementById('root')
 )
 }
