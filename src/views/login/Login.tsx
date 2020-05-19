@@ -1,11 +1,18 @@
 import React from 'react'
-class Login extends React.Component{
-    constructor(props:any){
-        super(props)
-        this.state={}
+
+interface State{
+    test:string
+}
+interface Prop{
+    bb:string|number
+}
+
+class Login extends React.Component<Prop,State>{
+    State:State={
+        test:'3333'
     }
-    render(){
-        return <div>login</div>
+    render():any{
+        return <div>{this.State.test}{this.props.bb}</div>
     }
 }
 

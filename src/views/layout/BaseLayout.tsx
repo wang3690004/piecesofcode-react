@@ -19,9 +19,26 @@ class BaseLayout extends React.Component{
                <Layout >
                    <Sider width={250}  className="site-layout-background">
                        <Menu mode='inline' defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} style={{height:'100%',borderRight:0}}>
-                           <SubMenu key='sub1' title='subnav 1'  >
+                           {
+                               routes.map((item,index)=>{
+                                   if(item.children.length>0){
+                                       return (
+                                           <SubMenu  >
+                                               {item.children.map((itemchild,childindex)=>{
+                                                   return (<Menu.Item key={childindex}><Link to={itemchild.path}>{itemchild.title}</Link></Menu.Item> )
+                                               })}
+                                           </SubMenu>
+                                           )
+                                   }else{
+                                    return (
+                                        <Menu.Item key={index}> <Link to={item.path}>{item.title}</Link></Menu.Item>
+                                    )
+                                   }
+                               })
+                           }
+                           {/* <SubMenu key='sub1' title='subnav 1'  >
                                <Menu.Item key='1'>option1</Menu.Item>
-                               <Menu.Item key='2'><Link to='/login' >login</Link></Menu.Item>
+                               <Menu.Item key='2'><Link to='/' >login</Link></Menu.Item>
                                <Menu.Item key='3'  ><Link to='/codelib' >codelib</Link></Menu.Item>
                                <Menu.Item key='4'>option4</Menu.Item>
                            </SubMenu>
@@ -36,22 +53,23 @@ class BaseLayout extends React.Component{
                                <Menu.Item key='10'>option10</Menu.Item>
                                <Menu.Item key='11'>option11</Menu.Item>
                                <Menu.Item key='12'>option12</Menu.Item>
-                           </SubMenu>
+                           </SubMenu> */}
                        </Menu>
                    </Sider>
                   <Layout style={{padding:'0 24px 24px'}}>
                         <Content className='site-layout-background' style={{padding:24,margin:0,minHeight:280}}>
+                            <CodeLib/>
                             <Switch>
-                            {
+                            { 
                                 routes.map((route,index)=>{
                                     console.log(route.path)
                                     console.log(route.component)
-                                return <Route path={route.path} key={route.title} component={Login} >  </Route>
+                                // return <Route path={route.path} key={route.title} component={route.component} >  </Route>
                             })
-                            }
+                            } 
                              
-                             {/* <Route path={'/login'}>{<Login/> } </Route>
-                             <Route path={'/codelib'}><CodeLib/>  </Route>  */}
+                             <Route path="/" exact  > <Login bb='444'/>  </Route>
+                             <Route path="/codelib" > <CodeLib/></Route>  
                             
                             </Switch>
                         </Content>

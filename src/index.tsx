@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import {HashRouter} from 'react-router-dom'
+import {HashRouter,BrowserRouter} from 'react-router-dom'
 import App from './App'
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
@@ -13,9 +13,9 @@ if(module.hot) {
     console.log('getmodulehot')
     ReactDom.render(
       <Provider store= {store} >
-        <HashRouter> 
+        <BrowserRouter> 
           <App  />,
-         </HashRouter> 
+         </BrowserRouter> 
           </Provider>,
       document.getElementById('root')
     )
@@ -24,9 +24,9 @@ if(module.hot) {
 const render = ()=>{
   ReactDom.render(
     <Provider store={store} >
-      <HashRouter>
+      <BrowserRouter>
          <App  />,
-         </HashRouter>
+         </BrowserRouter>
           </Provider>,
   document.getElementById('root')
 )
