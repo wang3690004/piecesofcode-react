@@ -10,16 +10,24 @@ const store = createStore<any,any,any,any>(reducer)
 
 if(module.hot) {
   module.hot.accept(()=>{
-    alert('getmodulehot')
+    console.log('getmodulehot')
     ReactDom.render(
-      <Provider store= {store} ><HashRouter> <App  />, </HashRouter>  </Provider>,
+      <Provider store= {store} >
+        <HashRouter> 
+          <App  />,
+         </HashRouter> 
+          </Provider>,
       document.getElementById('root')
     )
   })
 }
 const render = ()=>{
   ReactDom.render(
-    <Provider store={store} ><HashRouter> <App  />,</HashRouter> </Provider>,
+    <Provider store={store} >
+      <HashRouter>
+         <App  />,
+         </HashRouter>
+          </Provider>,
   document.getElementById('root')
 )
 }
