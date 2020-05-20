@@ -6,6 +6,24 @@ import {Switch,Route,Link} from 'react-router-dom'
 import {routes} from '../../route/index'
 import Login from '../login/Login'
 import CodeLib from '../codelib/CodeLib'
+import CodeLib1 from '../codelib/CodeLib1'
+import CodeLib2 from '../codelib/CodeLib2'
+
+interface ROUTES {
+    path:string,
+    title:string,
+    name:string,
+    component:any,
+    children:any[],
+}
+
+interface childrentype{
+    path:string,
+    title:string,
+    name:string,
+    component:any,
+    children:any[],
+}
 
 class BaseLayout extends React.Component{
    constructor(props:any){
@@ -20,12 +38,12 @@ class BaseLayout extends React.Component{
                    <Sider width={250}  className="site-layout-background">
                        <Menu mode='inline' defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} style={{height:'100%',borderRight:0}}>
                            {
-                               routes.map((item,index)=>{
+                               routes.map((item:ROUTES,index:number)=>{
                                    if(item.children.length>0){
                                        return (
-                                           <SubMenu  >
+                                           <SubMenu key={item.name} title={item.title} >
                                                {item.children.map((itemchild,childindex)=>{
-                                                   return (<Menu.Item key={childindex}><Link to={itemchild.path}>{itemchild.title}</Link></Menu.Item> )
+                                                   return (<Menu.Item key={itemchild.name}><Link to={itemchild.path}>{itemchild.title}</Link></Menu.Item> )
                                                })}
                                            </SubMenu>
                                            )
@@ -36,41 +54,24 @@ class BaseLayout extends React.Component{
                                    }
                                })
                            }
-                           {/* <SubMenu key='sub1' title='subnav 1'  >
-                               <Menu.Item key='1'>option1</Menu.Item>
-                               <Menu.Item key='2'><Link to='/' >login</Link></Menu.Item>
-                               <Menu.Item key='3'  ><Link to='/codelib' >codelib</Link></Menu.Item>
-                               <Menu.Item key='4'>option4</Menu.Item>
-                           </SubMenu>
-                           <SubMenu key='sub2' title='subnav 2'  >
-                               <Menu.Item key='5'>option5</Menu.Item>
-                               <Menu.Item key='6'>option6</Menu.Item>
-                               <Menu.Item key='7'>option7</Menu.Item>
-                               <Menu.Item key='8'>option8</Menu.Item>
-                           </SubMenu>
-                           <SubMenu key='sub3' title='subnav 3'  >
-                               <Menu.Item key='9'>option9</Menu.Item>
-                               <Menu.Item key='10'>option10</Menu.Item>
-                               <Menu.Item key='11'>option11</Menu.Item>
-                               <Menu.Item key='12'>option12</Menu.Item>
-                           </SubMenu> */}
                        </Menu>
                    </Sider>
                   <Layout style={{padding:'0 24px 24px'}}>
                         <Content className='site-layout-background' style={{padding:24,margin:0,minHeight:280}}>
                             <CodeLib/>
                             <Switch>
-                            { 
+                            {/* { 
                                 routes.map((route,index)=>{
                                     console.log(route.path)
                                     console.log(route.component)
                                 // return <Route path={route.path} key={route.title} component={route.component} >  </Route>
                             })
-                            } 
+                            }  */}
                              
-                             <Route path="/" exact  > <Login bb='444'/>  </Route>
-                             <Route path="/codelib" > <CodeLib/></Route>  
-                            
+                             <Route path="/login"   > <Login bb='444'/>  </Route>
+                             <Route path="/codelib" exact> <CodeLib/></Route>  
+                             <Route path="/codelib/codelib1" > <CodeLib1 /> </Route>
+                             <Route path="/codelib/codelib2" > <CodeLib2 /></Route>          
                             </Switch>
                         </Content>
                         <Footer style={{textAlign:'center'}}>createdby antd</Footer>
